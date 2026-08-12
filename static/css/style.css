@@ -1,0 +1,154 @@
+/* --ROOT VARIABLES-- */
+:root {
+    /* Colors */
+    /* Color palette: #8FA28A #C7D3C0 #F7F4ED #C8A96B */
+    --color-primary: #8FA28A;
+    --color-secondary: #C7D3C0;
+    --color-bg: #F7F4ED;
+    --color-surface: #C8A96B;
+    --color-text: #0f172a;
+    --color-text-muted: #64748b;
+    --color-border: #F7F4ED;
+
+    /* Typography */
+    --font-main: "Playfair Display", serif;
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 2rem;
+
+    /* Spacing */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+}
+
+/* --RESET CSS-- */
+* {
+    margin: 0;
+    padding-bottom: 0;
+}
+
+html {
+    scroll-behavior: smooth !important;
+}
+
+body {
+    font-family: var(--font-main) !important;
+    color: var(--color-text) !important;
+    background-color: var(--color-bg) !important;
+}
+
+button, input, textarea {
+    font: inherit !important;
+}
+
+/* --TYPOGRAPHY (TEXT STUFFS)-- */
+h1 {
+    font-size: var(--text-3xl);
+    font-weight: bold;
+}
+
+h2 {
+    font-size: var(--text-2xl);
+    font-weight: 700;
+}
+h3 {
+    font-size: var(--text-xl);
+    font-weight: 600;
+}
+
+p, li{
+    font-size: var(--text-base);
+    text-decoration: none;
+}
+
+a {
+    font-size: var(--text-base);
+    text-decoration: none !important;
+    color: var(--color-text) !important;
+}
+
+li:hover,
+a:hover {
+    text-decoration: none;
+    color: var(--color-text-muted) !important;
+}
+
+/* --CONTAINER & GRID SYSTEM-- */
+.container {
+    width: 100% !important;
+}
+
+.grid-3{
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(3, 1fr);
+    
+    div {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+}
+
+.grid-4 {
+    display: grid;
+    gap: var(--space-5);
+    grid-template-columns: repeat(4, 1fr);
+}
+
+/* --BASE COMPONENTS-- */
+/* Add more designs here when working on different components */
+/* Please note which design relates to which component(s) in TEMPLATE (HTML) */
+
+header {
+    background-color: var(--color-primary);
+
+}
+
+footer {
+    background-color: var(--color-primary);
+    padding-top: var(--space-3);
+    padding-bottom: var(--space-3);
+
+    ul {
+        list-style-type: none;
+        padding: 0
+    };
+
+    .social-links {
+        display: flex;
+        gap: 10px;
+        text-align: center;
+    }
+}
+
+/* RESPONSIVE */
+@media (max-width: 991px) {
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: repeat(2, 1fr);
+
+        div {
+            margin-left: 0px;
+            margin-right: 0px; 
+        }
+        
+    }
+}
+
+@media (max-width: 575px) {
+    .grid-3,
+    .grid-4 {
+        grid-template-columns: 1fr;
+    }
+}
