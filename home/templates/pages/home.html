@@ -1,0 +1,46 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+        <h2 class="text-2xl font-bold text-gray-900 mb-6">Sản phẩm mới nhất</h2>
+
+        {% if products_list %}
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                {% for product in products_list %}
+                    <div class="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                        <!-- Link hình ảnh & tên dẫn tới trang chi tiết -->
+                        <a href="{% if product.get_absolute_url %}{{ product.get_absolute_url }}{% else %}/product/{{ product.id }}/{% endif %}" class="block group">
+                            <div class="w-full h-48 bg-gray-100 overflow-hidden relative">
+                                {% if product.image %}
+                                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                                {% else %}
+                                    <div class="w-full h-full flex items-center justify-center text-gray-400">
+                                        Ảnh chưa cập nhật
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-lg text-gray-800 group-hover:text-blue-600 line-clamp-2">
+                                    {{ product.name }}
+                                </h3>
+                            </div>
+                        </a>
+
+                        <!-- Giá tiền & nút xem chi tiết -->
+                        <div class="p-4 pt-0 mt-auto">
+                            <div class="text-red-600 font-bold text-xl mb-3">
+                                <!-- Định dạng intcomma (ví dụ: 150,000) kết hợp đơn vị VNĐ -->
+                                {{ product.price|intcomma }} đ
+                            </div>
+                            <a href="{% if product.get_absolute_url %}{{ product.get_absolute_url }}{% else %}/product/{{ product.id }}/{% endif %}" 
+                               class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded transition-colors duration-200">
+                                Xem chi tiết
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="text-center py-12 text-gray-500">
+                Hiện chưa có sản phẩm nào được hiển thị.
+            </div>
+        {% endif %}
+{% end block %}
