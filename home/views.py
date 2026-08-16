@@ -3,18 +3,17 @@ from django.http import HttpResponse
 # from .forms import contactForm, reviewForm
 from .models import Product
 
-
-
-
 # BASE TEMPLATE, DO NOT TOUCH!!!
 def base(request):
     return render(request, 'pages/base.html')
 
 # DYNAMIC TEMPLATES BELOW
 def home(request):
-    return render(request,'pages/home.html')
-
-
+    products = Product.objects.all()
+    context = {
+        'products_list': products
+    }
+    return render(request, 'pages/home.html', context)
 
 def search(request):
     query = request.GET.get('q', '').strip()
