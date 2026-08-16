@@ -9,21 +9,83 @@
     <!-- static styles -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
-    <!-- bootstrap -->
+    <!-- bootstrap & icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 </head>
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg">
-            <div class="navbar-brand">DecoYourHome</div>
-        </nav>
+        <div class="container">
+            <nav class="navbar navbar-expand-lg">
+                <div class="navbar-brand">DecoYourHome</div>
+                <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarControls">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarControls">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/products/" class="nav-link">Các sản phẩm</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/news/" class="nav-link">Tin Tức</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/contact/" class="nav-link">Liên Hệ</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
     </header>
 
-    <main>{% block content %}{% endblock %}</main>
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
 
     <footer>
-        &copy; 2026 DecoYourHome. Project by pagri-delugu and minhphucx
+        <div class="container">
+            <div class="grid-3">
+                <div>
+                    <h3>VỀ CHÚNG TÔI</h3>
+                    <p>Dịch vụ thương mại các sản phẩm nội thất chất lượng</p>
+                    <p>&copy; 2026 DecoYourHome. Project by pagri-delugu and minhphucx</p>
+                </div>
+                <div>
+                    <h3>LIÊN KẾT NHANH</h3>
+                    <ul>
+                        <li>
+                            <a href="/" class="nav-link">Trang Chủ</a>
+                        </li>
+                        <li>
+                            <a href="/products/" class="nav-link">Các sản phẩm</a>
+                        </li>
+                        <li>
+                            <a href="/news/" class="nav-link">Tin Tức</a>
+                        </li>
+                        <li>
+                            <a href="/contact/" class="nav-link">Liên Hệ</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>MẠNG XÃ HỘI</h3>
+                    <div class="social-links">
+                        <a href="#" class="nav-link">
+                            <i class="fa-brands fa-facebook-f"></i> Facebook
+                        </a>
+                        <a href="#" class="nav-link">
+                            <i class="fa-brands fa-tiktok"></i> Tiktok
+                        </a>
+                    </div>
+                    
+                </div>
+            </div>
+            
+        </div>
     </footer>
 
     <!-- bootstrap -->
