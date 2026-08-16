@@ -1,0 +1,37 @@
+{% extends 'pages/base.html' %}
+
+{% block title %}Sản phẩm: {{ product.name }}{% endblock %}
+
+{% block content %}
+    {% load humanize %}
+    {% load calc_discounted_price %}
+        <section class="py-5">
+            <div class="row">
+                
+                <div class="col-12 col-md-6 mt-3">
+                    <h1><strong>{{ product.name }}</strong></h1>
+                    {% if product.discount %}
+                        <p class="price">
+                            {{ product.price|discounted:product.discount|intcomma }}VNĐ
+                            <span class="old-price">{{ product.price|intcomma }}VNĐ</span>
+                        </p>
+                    {% else %}
+                        <h2 class="price">{{ product.price|intcomma }}VNĐ</h2>
+                    {% endif %}
+
+                    <p>{{ product.description }}</p>
+
+                    <hr>
+                    <p>
+                        <button class="button">Mua ngay</button> Đã bán: {{ product.sold_quantity }}
+                    </p>
+                    
+                </div>
+
+                <div class="col-12 col-md-6 mt-3">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+                </div>
+            </div>
+        </section>
+        
+{% endblock %}
