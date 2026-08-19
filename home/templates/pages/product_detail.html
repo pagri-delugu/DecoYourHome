@@ -22,9 +22,16 @@
                     <p>{{ product.description }}</p>
 
                     <hr>
+
+                    {% if product.in_stock %}
                     <p>
-                        <button class="button">Mua ngay</button> Đã bán: {{ product.sold_quantity }}
+                        <button class="button">MUA NGAY</button> Đã bán: {{ product.sold_quantity }}
                     </p>
+                    {% else %}
+                    <p>
+                        <button class="button-disabled">ĐÃ HẾT HÀNG!</button> Đã bán: {{ product.sold_quantity }}
+                    </p>
+                    {% endif %}
                     
                 </div>
 
