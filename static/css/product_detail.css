@@ -1,5 +1,18 @@
 /* CSS for product_detail template */
 
 /* price */
+.price {
+    font-size: var(--text-2xl);
+
+    .old-price {
+        font-size: var(--text-base);
+        color: var(--color-text-muted);
+        text-decoration: line-through;
+    }
+}
 
 /* product image */
+.product-image {
+    max-width: 300px;
+    max-height: 300px;
+}
