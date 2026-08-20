@@ -9,12 +9,14 @@
         --color-primary: #8FA28A;
         --color-secondary: #C7D3C0;
         --color-bg: #F7F4ED;
+        --color-card: #ffffff;
         --color-surface: #C8A96B;
         --color-text: #0f172a;
         --color-text-muted: #64748b;
         --color-disabled: #64748b;
         --color-shadow: #0f172a;
         --color-border: #F7F4ED;
+        --color-error: #b3261e;
 
         /* Typography */
         --font-main: "Playfair Display", serif;
@@ -156,20 +158,21 @@
     }
 
     .button:hover {
-    color: var(--color-bg);
-    transform: translate(-0.25rem, -0.25rem);
-    background: var(--color-primary);
-    box-shadow: 0.25rem 0.25rem var(--color-shadow);
+        color: var(--color-bg);
+        transform: translate(-0.25rem, -0.25rem);
+        background: var(--color-primary);
+        box-shadow: 0.25rem 0.25rem var(--color-shadow);
     }
 
     .button:active {
-    transform: translate(0);
-    box-shadow: none;
+        transform: translate(0);
+        box-shadow: none;
+        background: var(--color-surface);
     }
 
     .button-disabled {
         color: var(--color-bg);
-        cursor: pointer;
+        cursor: not-allowed;
         border: 3px solid var(--color-border);
         border-radius: var(--space-1);
         padding: 0.8em 2em;
