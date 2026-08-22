@@ -38,6 +38,10 @@
                         </li>
                     </ul>
                 </div>
+                <form action="{% url 'search' %}" method="GET" class="d-flex">
+                    <input type="text" name="q" placeholder="Tìm kiếm sản phẩm" class="search-box me-2">
+                    <button type="submit" class="button">Search</button>
+                </form>
             </nav>
         </div>
     </header>
