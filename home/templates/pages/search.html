@@ -1,7 +1,70 @@
 {% extends 'pages/base.html' %}
+{% load humanize %}
 
 {% block title %}Kết Quả Tìm Kiếm{% endblock %}
 
 {% block content %}
+<div class="container my-4">
+    <!-- Hiển thị từ khóa tìm kiếm -->
+    <h2 class="mb-3">
+        Kết quả tìm kiếm cho: <span class="text-primary">"{{ keyword|default:'' }}"</span>
+    </h2>
 
+    {% if keyword %}
+        <p class="text-muted mb-4">
+            Tìm thấy <strong>{{ products|length }}</strong> sản phẩm phù hợp.
+        </p>
+    {% endif %}
+
+    <!-- Danh sách kết quả -->
+    {% for product in products %}
+    <div class="grid-4">
+        <div class="card h-100 shadow-sm position-relative">
+            <!-- Badge "Hết hàng" nếu in_stock = False -->
+            {% if not product.in_stock %}
+                <span class="position-absolute top-0 end-0 badge bg-danger m-2 px-3 py-2">
+                    Hết hàng
+                </span>
+            {% endif %}
+
+            <!-- Ảnh sản phẩm -->
+            {% if product.image %}
+                <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 250px; object-fit: cover;">
+            {% else %}
+                <img src="https://via.placeholder.com/300x250" class="card-img-top" alt="{{ product.name }}">
+            {% endif %}
+
+            <div class="card-body d-flex flex-column">
+                <h5 class="card-title">{{ product.name }}</h5>
+                <p class="card-text text-danger fw-bold fs-5 mb-1">
+                    {{ product.price|intcomma }} VNĐ
+                </p>
+                <p class="card-text text-muted small mb-3">
+                    Đã bán: {{ product.sold_quantity|default:0 }}
+                </p>
+
+                <a href="{% url 'product_details' product.id %}" class="btn btn-outline-primary mt-auto">
+                    Xem chi tiết
+                </a>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <!-- Không tìm thấy sản phẩm hoặc chưa nhập từ khóa -->
+    <div class="col-12 text-center py-5">
+        <div class="alert alert-warning d-inline-block px-5 py-4">
+            <h4 class="alert-heading">Không tìm thấy sản phẩm!</h4>
+            {% if keyword %}
+                <p class="mb-0">Không có sản phẩm nào phù hợp với từ khóa <strong>"{{ keyword }}"</strong>.</p>
+            {% else %}
+                <p class="mb-0">Vui lòng nhập từ khóa để tìm kiếm sản phẩm.</p>
+            {% endif %}
+        </div>
+        <div class="mt-3">
+            <a href="{% url 'home' %}" class="btn btn-primary">Quay lại trang chủ</a>
+        </div>
+    </div>
+    {% endfor %}
+    
+</div>
 {% endblock %}
