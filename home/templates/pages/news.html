@@ -1,7 +1,41 @@
 {% extends 'pages/base.html' %}
+{% load static %}
 
 {% block title %}Tin Tức{% endblock %}
 
 {% block content %}
+<section class="news-section">
+    <div class="container">
 
+        <div class="news-heading text-center">
+            <h1>Tin Tức</h1>
+            <p>Cập nhật những thông tin và tin tức mới nhất</p>
+        </div>
+
+        <nav class="date-filter" aria-label="Lọc theo thời gian">
+            <a href="?range=all" class="filter-pill{% if not request.GET.range or request.GET.range == 'all' %} active{% endif %}">Tất cả</a>
+            <a href="?range=today" class="filter-pill{% if request.GET.range == 'today' %} active{% endif %}">Hôm nay</a>
+            <a href="?range=week" class="filter-pill{% if request.GET.range == 'week' %} active{% endif %}">Tuần này</a>
+            <a href="?range=month" class="filter-pill{% if request.GET.range == 'month' %} active{% endif %}">Tháng này</a>
+        </nav>
+
+        <div class="grid-3 posts-grid">
+            {% for post in posts %}
+            <a href="{% url 'news_article' post.id %}" class="post-card">
+                <div class="post-card-image">
+                    <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy">
+                </div>
+                <div class="post-card-body">
+                    <h3 class="post-card-title">{{ post.title }}</h3>
+                    <p class="post-card-desc">{{ post.content|truncatewords:20 }}</p>
+                    <span class="post-card-cta">Đọc bài tin →</span>
+                </div>
+            </a>
+            {% empty %}
+            <p class="no-posts">Chưa có bài tin nào.</p>
+            {% endfor %}
+        </div>
+
+    </div>
+</section>
 {% endblock %}

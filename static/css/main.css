@@ -103,6 +103,8 @@
         display: grid;
         gap: var(--space-5);
         grid-template-columns: repeat(3, 1fr);
+        align-items: stretch;
+        grid-auto-rows: 1fr;
         
         div {
             margin-left: auto;
@@ -177,6 +179,30 @@
         border-radius: var(--space-1);
         padding: 0.8em 2em;
         background: var(--color-disabled);
+    }
+
+    .card {
+        height: 100%;
+        background-color: var(--color-card);
+        border: 1px solid var(--color-secondary);
+        border-radius: var(--space-2);
+        padding: var(--space-6);
+
+        h2 {
+            position: relative;
+            margin-bottom: var(--space-6);
+            padding-bottom: var(--space-3);
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 48px;
+            height: 3px;
+            background-color: var(--color-surface);
+        }
     }
 
 
