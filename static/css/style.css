@@ -2,5 +2,6 @@
 @import 'main.css';
 
 /* --OTHER CSS HERE-- */
+@import 'base.css';
 @import 'product_detail.css';
 @import 'contact.css';
