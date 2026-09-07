@@ -1,7 +1,25 @@
 {% extends 'pages/base.html' %}
+{% load static %}
 
-{% block title %}Bài Đăng: {% endblock %}
+{% block title %}Bài Đăng: {{ post.title }}{% endblock %}
 
 {% block content %}
+<section class="article-section">
+    <div class="container">
+        <div class="card article-card">
 
+            <h1 class="article-title">{{ post.title }}</h1>
+            <p class="article-date">{{ post.created_at|date:"d/m/Y" }}</p>
+
+            <div class="article-image">
+                <img src="{{ post.image.url }}" alt="{{ post.title }}">
+            </div>
+
+            <div class="article-content">
+                {{ post.content|linebreaks }}
+            </div>
+
+        </div>
+    </div>
+</section>
 {% endblock %}

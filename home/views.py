@@ -1,5 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
+from django.utils import timezone
+from datetime import timedelta
 from .forms import ContactForm
 from .models import Product, Banner, Post
 
@@ -55,10 +57,19 @@ def contact(request):
 
 def news(request):
     posts = Post.objects.all().order_by('-created_at')
+    r = request.GET.get('range', 'all')
+    now = timezone.now()
+
+    if r == 'today':
+        posts = posts.filter(created_at__date=now.date())
+    elif r == 'week':
+        posts = posts.filter(created_at__gte=now - timedelta(days=7))
+    elif r == 'month':
+        posts = posts.filter(created_at__gte=now - timedelta(days=30))
 
     return render(request, 'pages/news.html', {'posts': posts})
 
-def news_article(request):
+def news_article(request, id):
     post = get_object_or_404(Post, pk=id) # Variable name for this view's context is "post" without "s" ("posts" is incorrect)
 
     return render(request, 'pages/article.html', {'post': post})

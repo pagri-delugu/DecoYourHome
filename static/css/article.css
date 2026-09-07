@@ -1,0 +1,45 @@
+/* CSS FOR ARTICLE DETAIL PAGE ONLY */
+/* Depends on main.css (variables, reset, .card). Import main.css BEFORE this file. */
+
+
+    .article-section {
+        padding-top: var(--space-10);
+        padding-bottom: var(--space-10);
+    }
+
+    .article-card {
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .article-title {
+        margin-bottom: var(--space-3);
+    }
+
+    .article-date {
+        color: var(--color-text-muted);
+        font-size: var(--text-sm);
+        margin-bottom: var(--space-6);
+    }
+
+    .article-image {
+        border-radius: var(--space-2);
+        overflow: hidden;
+        margin-bottom: var(--space-6);
+
+        img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+    }
+
+    .article-content {
+        color: var(--color-text);
+        line-height: 1.8;
+
+        p {
+            margin-bottom: var(--space-4);
+        }
+    }
