@@ -1,44 +1,45 @@
 {% extends 'pages/base.html' %}
+{% load humanize %}
+{% load calc_discounted_price %}
 
 {% block title %}Sản phẩm: {{ product.name }}{% endblock %}
 
 {% block content %}
-    {% load humanize %}
-    {% load calc_discounted_price %}
-        <section class="py-5">
-            <div class="row">
+    
+    <section>
+        <div class="row">
+            
+            <div class="col-12 col-md-6 mt-3">
+                <h1><strong>{{ product.name }}</strong></h1>
+                {% if product.discount %}
+                    <p class="price">
+                        {{ product.price|discounted:product.discount|intcomma }}VNĐ
+                        <span class="old-price">{{ product.price|intcomma }}VNĐ</span>
+                    </p>
+                {% else %}
+                    <h2 class="price">{{ product.price|intcomma }}VNĐ</h2>
+                {% endif %}
+
+                <p>{{ product.description }}</p>
+
+                <hr>
+
+                {% if product.in_stock %}
+                <p>
+                    <button class="button">MUA NGAY</button> Đã bán: {{ product.sold_quantity }}
+                </p>
+                {% else %}
+                <p>
+                    <button class="button-disabled">ĐÃ HẾT HÀNG!</button> Đã bán: {{ product.sold_quantity }}
+                </p>
+                {% endif %}
                 
-                <div class="col-12 col-md-6 mt-3">
-                    <h1><strong>{{ product.name }}</strong></h1>
-                    {% if product.discount %}
-                        <p class="price">
-                            {{ product.price|discounted:product.discount|intcomma }}VNĐ
-                            <span class="old-price">{{ product.price|intcomma }}VNĐ</span>
-                        </p>
-                    {% else %}
-                        <h2 class="price">{{ product.price|intcomma }}VNĐ</h2>
-                    {% endif %}
-
-                    <p>{{ product.description }}</p>
-
-                    <hr>
-
-                    {% if product.in_stock %}
-                    <p>
-                        <button class="button">MUA NGAY</button> Đã bán: {{ product.sold_quantity }}
-                    </p>
-                    {% else %}
-                    <p>
-                        <button class="button-disabled">ĐÃ HẾT HÀNG!</button> Đã bán: {{ product.sold_quantity }}
-                    </p>
-                    {% endif %}
-                    
-                </div>
-
-                <div class="col-12 col-md-6 mt-3">
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
-                </div>
             </div>
-        </section>
+
+            <div class="col-12 col-md-6 mt-3">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="product-image">
+            </div>
+        </div>
+    </section>
         
 {% endblock %}

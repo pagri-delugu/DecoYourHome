@@ -148,6 +148,11 @@
         }
     }
 
+    section {
+        padding-top: var(--space-10);
+        padding-bottom: var(--space-10);
+    }
+
     /* button */
     .button {
         color: var(--color-text);

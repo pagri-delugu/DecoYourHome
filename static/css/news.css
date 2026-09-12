@@ -3,8 +3,6 @@
 
 
     .news-section {
-        padding-top: var(--space-10);
-        padding-bottom: var(--space-10);
 
         .news-heading {
             margin-bottom: var(--space-6);
