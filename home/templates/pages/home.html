@@ -1,30 +1,39 @@
 {% extends 'pages/base.html' %}
-{% load humanize %}
 
 {% block title %}DecoYourHome - Trang chủ{% endblock %}
 
 {% block content %}
-<div class="container my-4">
-    <h2 class="mb-4">Danh sách sản phẩm</h2>
-    <div class="row">
-        {% for product in products %}
-        <div class="col-md-4 mb-4">
-            <div class="card">
-                {% if product.image %}
-                    <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}" style="height: 250px; object-fit: cover;">
-                {% endif %}
-                <div class="card">
-                    <h5>{{ product.name }}</h5>
-                    <p class="price">{{ product.price|intcomma }} VNĐ</p>
-                    
-                    <!-- Đường dẫn đến trang chi tiết dựa trên ID sản phẩm -->
-                    <a href="{% url 'product_details' product.id %}"><button class="button">Xem chi tiết</button></a>
+<section>
+    {% if banners %}
+    <div class="container">
+        <div class="carousel slide banner-carousel" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for banner in banners %}
+                <div class="carousel-item{% if forloop.first %} active{% endif %}">
+                    <img src="{{ banner.image.url }}" alt="{{ banner.title }}">
                 </div>
+                {% endfor %}
             </div>
         </div>
-        {% empty %}
-        <p>Hiện chưa có sản phẩm nào.</p>
-        {% endfor %}
     </div>
-</div>
+    {% endif %}
+</section>
+
+<section>
+    <div class="container">
+        <div class="section-heading text-center">
+            <h2>Sản phẩm nổi bật của chúng tôi</h2>
+            <p>Những sản phẩm được yêu thích và bán chạy nhất</p>
+        </div>
+
+        <div class="grid-4">
+            {% for product in products %}
+                {% include 'partials/product_card.html' with product=product %}
+            {% empty %}
+                <p class="no-products">Hiện chưa có sản phẩm nào.</p>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
 {% endblock %}

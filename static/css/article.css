@@ -1,12 +1,6 @@
 /* CSS FOR ARTICLE DETAIL PAGE ONLY */
 /* Depends on main.css (variables, reset, .card). Import main.css BEFORE this file. */
 
-
-    .article-section {
-        padding-top: var(--space-10);
-        padding-bottom: var(--space-10);
-    }
-
     .article-card {
         max-width: 800px;
         margin-left: auto;

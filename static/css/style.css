@@ -3,6 +3,8 @@
 
 /* --OTHER CSS HERE-- */
 @import 'base.css';
+@import 'shop.css';
+@import 'home.css';
 @import 'product_detail.css';
 @import 'contact.css';
 @import 'news.css';

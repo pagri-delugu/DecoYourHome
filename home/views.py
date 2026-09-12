@@ -15,7 +15,7 @@ def home(request):
     products = Product.objects.filter(in_stock=True).order_by('-sold_quantity')[:4] # Only takes 4 in-stock products with highest sales
 
     context  = {
-        'banner': banner,
+        'banners': banner,
         'products': products
     }
 

@@ -1,0 +1,29 @@
+<!-- Expects `product` in context. Include with: include 'partials/product_card.html' with product=product -->
+
+{% load humanize calc_discounted_price %}
+
+<div class="product-card">
+    <div class="product-card-image">
+        {% if not product.in_stock %}
+        <span class="product-badge product-badge-outofstock">Hết hàng</span>
+        {% elif product.discount %}
+        <span class="product-badge product-badge-discount">-{{ product.discount }}%</span>
+        {% endif %}
+
+        {% if product.image %}
+        <img src="{{ product.image.url }}" alt="{{ product.name }}" loading="lazy">
+        {% endif %}
+    </div>
+
+    <div class="product-card-body">
+        <h3 class="product-card-title">{{ product.name }}</h3>
+
+        {% if product.discount %}
+        <p class="product-card-price">{{ product.price|discounted:product.discount|intcomma }} VNĐ</p>
+        {% else %}
+        <p class="product-card-price">{{ product.price|intcomma }} VNĐ</p>
+        {% endif %}
+
+        <a href="{% url 'product_details' product.id %}"><button class="button product-card-cta">Xem chi tiết</button></a>
+    </div>
+</div>
